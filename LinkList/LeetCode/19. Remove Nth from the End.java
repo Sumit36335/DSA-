@@ -6,40 +6,31 @@ public int sizefind(ListNode temp){
             size++;
         }
         return size;
-     }
-    public ListNode swapPairs(ListNode head) {
-        if(head==null)
-        {
-            return head;
-        }
-        ListNode currHead=new ListNode(-1);
-        ListNode currTail=currHead;
+    }
+    public ListNode getAt(int idx,ListNode curr){
+      if(idx==0)
+      {
+          return curr;
+      }
+      else
+      {
+          for ( int i = 0  ; i< idx ; i++){
+          curr = curr.next;
+          }
+      }
+     return curr;
+    }
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+       
+        ListNode temp=new ListNode (-1);
+        temp.next=head;
         int size= sizefind(head);
-        while(size>0)
+        int idx=size-n;
+        ListNode item=getAt(idx,temp);
+        item.next=item.next.next;
+        if(size==n)
         {
-            ListNode prevHead=new ListNode(-1);
-            ListNode prevTail=prevHead;
-            if(size>=2)
-            {
-                for(int i=0;i<2;i++)
-                {
-                    ListNode temp=head;
-                    head=head.next;
-                    temp.next=prevTail.next;
-                    prevTail.next=temp;
-                }
-                currTail.next=prevTail.next;
-                while(currTail.next!=null)
-                {
-                    currTail=currTail.next;
-                }
-                size-=2;
-            }
-            else
-            {
-                currTail.next=head;
-                break;
-            }
-         }
-         return currHead.next;
+            return item.next;
+        }
+        return head;
     }

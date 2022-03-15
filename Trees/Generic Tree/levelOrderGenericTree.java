@@ -4,10 +4,10 @@ public static void levelOrder(Node node){
     q.add(node);
     while(q.size()>0)
     {
-      node = q.remove();
-      System.out.print(node.data+" ");
+      node curr = q.remove();
+      System.out.print(curr.data+" ");
       
-      for(Node child:node.children)
+      for(Node child:curr.children)
       {
         q.add(child);
       }
